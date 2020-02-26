@@ -17,6 +17,7 @@ require("010_PrmSet")
 --パブリック変数
 local pNowFrm = 0
 local pRegCnt = 0
+local ptest = 0
 
 --[[
 	自作関数
@@ -51,6 +52,7 @@ end
 --[[
 	用意されてるやつ。
 	描画のタイミングで常に実行され続ける。実際に何フレーム分に相当するかかはちょっとよく分からない。今度数えてみよう。
+  
 ]]
 gui.register(function()
 	pRegCnt = pRegCnt + 1
