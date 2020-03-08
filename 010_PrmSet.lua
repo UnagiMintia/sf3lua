@@ -3,8 +3,114 @@
 	説明:各種パラメータやアドレスなどの定数をセットする。基本的にテーブルに入れて受け渡す。
 ]]
 
+--定数用
+function fConValSet_010()
+  local lVal
+  lVal = {
+      MenFntNam     = "meiryo.ttc", --メニュー項目用フォント
+      MenFntPnt     = 6, --メニュー項目用フォントサイズ
+      TitFntNam     = "meiryo.ttc", --メニュー項目用フォント
+      TitFntPnt     = 8, --メニュータイトル用フォントサイズ
+      NotFntNam     = "meiryo.ttc", --注釈用フォント
+      NotFntPnt     = 6, --注釈用フォントサイズ
+      
+      GI = 0x00,
+      AL = 0x01,
+      RY = 0x02,
+      YU = 0x03,
+      DU = 0x04,
+    }
+  return lVal
+end
+
+--メニュー表記
+function fMenLblJpn_010()
+  local lVal
+  lVal = {
+    P01T    = "キャラ、ステージ設定",
+    P01L01       = "1P",
+    P01L02       = "2P",
+    P01L03       = "操作",
+    P01L04       = "ステージ＆BGM",
+  }
+  return lVal
+end
+
+--メニューページリスト
+function fMenLstPgeJpn_010()
+  local lVal
+  lVal = {
+    "メニュー 1 / 5",
+    "メニュー 2 / 5",
+    "メニュー 3 / 5",
+    "メニュー 4 / 5",
+    "メニュー 5 / 5",
+    idx = 1
+  }
+  return lVal
+end
+
+--キャラクター選択リスト
+function fMenLstChaJpn_010()
+  local lVal
+  lVal = {"GI","AL","RY","YU","DU","NE","HU","IB","EL","OR","YA","KE","SE","UR","GO","GO*","CH","MA","Q","TW","RE",idx = 1}
+  return lVal
+end
+
+--SA選択リスト
+function fMenLstSar_010()
+  local lVal = {}
+  lVal = {"SA1","SA2","SA3",idx = 1}
+  
+--  lVal[0] = "I"
+--  lVal[1] = "II"
+--  lVal[2] = "III"
+  return lVal
+end
+
+--カラー選択リスト
+function fMenLstCol_010()
+  local lVal
+  lVal = {"LP","MP","HP","LK","MK","HK","LP+MK+HP",idx = 1}
+  return lVal
+end
+
+--1P/2Pリスト
+function fMenLstCnt_010()
+  local lVal
+  lVal = {"1P","2P",idx = 1}
+  return lVal
+end
+
+--キャラクターナンバー用配列
+function fConChaNum_010()
+  local lVal = {}
+  lVal["GI"] = 0x00
+  lVal["AL"] = 0x01
+  lVal["RY"] = 0x02
+  lVal["YU"] = 0x03
+  lVal["DU"] = 0x04
+  lVal["NE"] = 0x05
+  lVal["HU"] = 0x06
+  lVal["IB"] = 0x07
+  lVal["EL"] = 0x08
+  lVal["OR"] = 0x09
+  lVal["YA"] = 0x0A
+  lVal["KE"] = 0x0B
+  lVal["SE"] = 0x0C
+  lVal["UR"] = 0x0D
+  lVal["GO"] = 0x0E
+  lVal["GO*"] = 0x0F
+  lVal["CH"] = 0x10
+  lVal["MA"] = 0x11
+  lVal["Q"] = 0x12
+  lVal["TW"] = 0x13
+  lVal["RE"] = 0x14
+  return lVal
+end
+
 --メモリアドレス格納用
-function 010_fMemAdrSet()
+function fMemAdrSet_010()
 	local lMem
 		lMem = {
 			--特に断りが無ければ対戦中。対戦中以外は全然違う可能性もある。
@@ -31,7 +137,7 @@ function 010_fMemAdrSet()
 			Bag2Pl				= 0x0202674D,	--2P地上対空ブロッキング受付残りフレーム 通常max 0x05
 
 			Grp1Pl				= 0x02026328,	--1Pグラップディフェンス 1で有効
-			Grp2Pl				= 0x02026328,	--2Pグラップディフェンス 1で有効
+			Grp2Pl				= 0x0202673F,	--2Pグラップディフェンス 1で有効
 
 			Dir1Pl				= 0x02068C77,	--1Pの向き
 			Dir2Pl				= 0x0206910F,	--2Pの向き
@@ -49,6 +155,15 @@ function 010_fMemAdrSet()
 
 			SelCol1Pl			= 0x02015683,	--1Pカラー 0:LP,1:MP,2:HP,3:LK,4:MK:,5:HK,6:LP+MK+HP
 			SelCol2Pl			= 0x02015684,	--2Pカラー
+      
+      SelStg        = 0x02026BB0, --ステージ 設定する値はキャラIDと同じ
+      SelBgm        = 0x02078D06, --1でミュート？
+      
+      Stp1pl        =	0x02068CB1, --1で1Pの動き停止
+      Stp2pl        = 0x02069149, --1で2Pの動き停止
+      
+      GamMod1				= 0x020154A6,
+      GamMod2				= 0x020154A7,
 
 			--未確認(Cubeさんのに書いてあったの
 
